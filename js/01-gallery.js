@@ -40,8 +40,11 @@ gallery.addEventListener('click', (e) => {
 })
 
 function setEcsape (e) {
-    if (e.code === 'Escape') {
-        modalImageBackdrop.close();
+    if (e.code !== 'Escape') {
+        return;
     } 
+    modalImageBackdrop.close();
     gallery.removeEventListener('keydown', setEcsape);
+    
+    console.log(e)
 };
