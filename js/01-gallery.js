@@ -26,6 +26,7 @@ const createGalleryMarkup = galleryItems
 const galleryClickHandler = (e) => {
     modalImage.src = e.target.dataset.source;
     modalImageBackdrop.show();
+    gallery.addEventListener('keydown', setEcsape);
 }
 
 gallery.insertAdjacentHTML('beforeend', createGalleryMarkup);
@@ -38,9 +39,9 @@ gallery.addEventListener('click', (e) => {
     galleryClickHandler(e);
 })
 
-gallery.addEventListener('keydown', (e) => {
-    if (e.code !== 'Escape') {
-        return
-    }
-    modalImageBackdrop.close();
-})
+function setEcsape (e) {
+    if (e.code === 'Escape') {
+        modalImageBackdrop.close();
+    } 
+    gallery.removeEventListener('keydown', setEcsape);
+};
